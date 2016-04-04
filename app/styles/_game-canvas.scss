@@ -21,5 +21,63 @@
     overflow: hidden;
 
     // Some graphics
-    background: red;
+    background: skyblue;
 }
+
+/* TEMPORARY PLACE FOR BACKGROUND WHILE I FIGURE OUT FUCKING GRUNT Y U NO GULP!!! */
+
+
+//ground start
+.groundContainer{
+  width: em(1024px);
+  height: em(60px);
+  position: absolute;
+  bottom: 0;
+
+
+}
+
+.groundTop{
+  color: black;
+  border-top: solid 2px rgb(142, 132, 6);
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 5px,
+    #59aa08 5px,
+    #59aa08 10px
+  ),
+  linear-gradient(
+    to bottom,
+    #59aa08,
+    #7eeb4b
+  );
+
+  height: 25px;
+  width: em(1100px);
+  animation: movingGround 0.5s infinite;
+  animation-timing-function: linear;
+
+
+}
+
+.groundBottom{
+  background-color: rgb(41, 32, 2);
+  height: 35px;
+  width: 100%;
+}
+
+@keyframes movingGround {
+  0%{
+    transform: translate3d(0, 0, 0);
+
+  }
+  100%{
+    transform: translate3d(-75px, 0, 0);
+
+  }
+
+}
+
+
+// CLOUD
