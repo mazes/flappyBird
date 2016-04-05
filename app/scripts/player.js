@@ -35,10 +35,10 @@ window.Player = (function() {
 		if (Controls.keys.down) {
 			this.pos.y += delta * SPEED;
 		}
-		if (Controls.keys.up) {
+		if (Controls.keys.up){
 			this.pos.y -= delta * SPEED;
 		}
-
+        this.pos.y += delta * SPEED;
 
 		this.checkCollisionWithBounds();
 
