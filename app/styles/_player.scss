@@ -5,12 +5,32 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: em(50px);
-    height: em(50px);
+    position: absolute;
+    width: em(68px);
+    height: em(48px);
+    background-image: url('../bird.png');
+    background-size: 68px 192px;
 
-    background: blue;
+    -webkit-animation: animBird 300ms steps(4) infinite;
+    animation: animBird 300ms steps(4) infinite;
 }
 
+@-webkit-keyframes animBird {
+   from { background-position: 0px 0px; }
+   to { background-position: 0px -192px; }
+}
+@-moz-keyframes animBird {
+   from { background-position: 0px 0px; }
+   to { background-position: 0px -192px; }
+}
+@-o-keyframes animBird {
+   from { background-position: 0px 0px; }
+   to { background-position: 0px -192px; }
+}
+@keyframes animBird {
+   from { background-position: 0px 0px; }
+   to { background-position: 0px -192px; }
+}
 
 //
 .moveUp {
