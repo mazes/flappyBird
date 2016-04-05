@@ -10,3 +10,18 @@
 
     background: blue;
 }
+
+
+//
+.moveUp {
+  animation: moveUpAnim 1s 0 1 linear;
+}
+
+@keyframes moveUpAnim {
+  0% {
+    transform: rotate3d(45deg) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: rotate3d(0deg) translate3d(0,-20px,0);
+  }
+}

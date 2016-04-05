@@ -39,6 +39,7 @@ window.Player = (function() {
 			this.pos.y -= delta * SPEED;
 		}
 
+
 		this.checkCollisionWithBounds();
 
 		// Update UI
