@@ -1,9 +1,17 @@
 window.Pipe = (function() {
     'use strict';
-
     var Pipe = function(game) {
         this.game = game;
         this.el = $('#pipe');
+        this.currentPipes = [];
+        this.index = 0;
+    };
+
+    Pipe.prototype.spawnPipe = function(){
+        var pipe = this.currentPipes[this.index];
+        this.el.append(pipe.pTop);
+        this.el.append(pipe.pBot);
+        this.index++;
     };
 
     Pipe.prototype.createPipe = function() {
@@ -18,9 +26,21 @@ window.Pipe = (function() {
         var height = Math.floor(Math.random() * (max - min) + min);
         pBot.style.height = height + 'em';
         pTop.style.height = (this.game.WORLD_HEIGHT - (height + 14.4)) + 'em';
-        this.el.append(pTop);
-        this.el.append(pBot);
+
+        var pipe = {
+            pBot: pBot,
+            pTop: pTop
+        };
+
+        this.currentPipes.push(pipe);
     };
+
+    Pipe.prototype.generatePipes = function(){
+        for(var i = 0; i < 50; i++){
+            this.createPipe();
+        }
+    };
+
 
     return Pipe;
 })();

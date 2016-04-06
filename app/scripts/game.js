@@ -9,14 +9,12 @@ window.Game = (function() {
 	 */
 	var Game = function(el) {
 		this.el = el;
+        this.counter = 0;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.isPlaying = false;
         // our code
         this.Pipe = new window.Pipe(this);
-        this.Pipe.createPipe();
-        //this.Pipe = new window.Pipe(this.el.find('.pTop'), this);
-        //this.Pipe = new window.Pipe(this.el.find('.pBot'), this);
-
+        this.Pipe.generatePipes();
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
 	};
@@ -28,9 +26,8 @@ window.Game = (function() {
 	Game.prototype.onFrame = function() {
 		// Check if the game loop should stop.
 		if (!this.isPlaying) {
-			return;
+            return;
 		}
-
 		// Calculate how long since last frame in seconds.
 		var now = +new Date() / 1000,
 				delta = now - this.lastFrame;
@@ -38,8 +35,18 @@ window.Game = (function() {
 
 		// Update game entities.
 		this.player.onFrame(delta);
-
+        /*setInterval(function(){
+            this.Pipe.spawnPipe(this.index);
+            this.index++;
+        }, 3000);
+*/
 		// Request next frame.
+        console.log(this.counter);
+        this.counter++;
+        if(this.counter === 120){
+            this.Pipe.spawnPipe();
+            this.counter = 0;
+        }
 		window.requestAnimationFrame(this.onFrame);
 	};
 
