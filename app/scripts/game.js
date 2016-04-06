@@ -37,13 +37,13 @@ window.Game = (function() {
 		// Update game entities.
 		this.player.onFrame(delta);
 
-        //if(this.genPipes){
+        if(this.genPipes){
             this.counter++;
             if(this.counter === 120){
                 this.pipesOnScreen.push(this.Pipe.spawnPipe());
                 this.counter = 0;
             }
-        //}
+        }
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
 	};
