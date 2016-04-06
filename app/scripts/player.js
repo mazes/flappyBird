@@ -40,12 +40,14 @@ window.Player = (function() {
 			this.pos.y -= delta * SPEED;
             this.game.genPipes = true;
 		}
-        if (Controls.keys.space){
+        else if (Controls.keys.space){
             this.pos.y -= delta * SPEED;
             this.game.genPipes = true;
         }
         else{
-            this.pos.y += delta * DROPSPEED;
+            if(this.game.genPipes){
+                this.pos.y += delta * DROPSPEED;
+            }
         }
 
 		this.checkCollisionWithBounds();
