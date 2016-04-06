@@ -84,7 +84,6 @@ window.Game = (function() {
 					that.start();
 				});
 	};
-
 	/**
 	 * Some shared constants.
 	 */
