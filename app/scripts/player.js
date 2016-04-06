@@ -52,9 +52,12 @@ window.Player = (function() {
 
 		this.checkCollisionWithBounds();
         for(var i = 0; i < this.game.pipesOnScreen.length; i++){
+            if(this.removePipeIfOutOfScreen(this.game.pipesOnScreen[i])){
+                this.game.pipesOnScreen.splice(i,1);
+            }
             this.checkCollisionWithPipes(this.game.pipesOnScreen[i]);
+            this.checkForScore(this.game.pipesOnScreen[i]);
         }
-
 		// Update UI
 		this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
 	};
@@ -95,10 +98,27 @@ window.Player = (function() {
         return this.game.gameover();
     };
 
-    Player.prototype.removeOldPipes = function () {
+    Player.prototype.removePipeIfOutOfScreen = function (pipe) {
+        if($(pipe.pTop).offset().left + 68 < 0){
+            $(pipe.pTop).remove();
+            $(pipe.pBot).remove();
+            return true;
+        }
+
+        return false;
+    };
+
+    Player.prototype.checkForScore = function (pipe) {
+        var pipeOffset = Math.floor($(pipe.pTop).offset().left + 68) - this.offset;
+        console.log(pipeOffset);
+        if(pipeOffset < 2 && pipeOffset > -2){
+            this.game.score++;
+            $('#score').html(this.game.score);
+        }
 
     };
 
+    Player.prototype.offset = 253;
 	return Player;
 
 })();
