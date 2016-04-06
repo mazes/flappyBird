@@ -1,0 +1,64 @@
+
+/*
+height: em(576px); <- GAME CANVAS
+height: em(48px); <- PLAYER
+height: em(60px); <- ground
+*/
+
+.pTop {
+    background-color: blue;
+    position: absolute;
+    right: -100px;
+    top: 0;
+    width: em(68px);
+    height: em(186px);
+    overflow: hidden;
+
+    -webkit-animation-name: animPipes; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 6s; /* Chrome, Safari, Opera */
+    animation-name: animPipes;
+    animation-timing-function: linear;
+    animation-duration: 6s;
+}
+
+.pBot {
+    background-color: green;
+    right: -100px;
+    bottom: 0;
+    position: absolute;
+    width: em(68px);
+    height: em(246px);
+    overflow: hidden;
+
+    -webkit-animation-name: animPipes; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 6s; /* Chrome, Safari, Opera */
+    animation-name: animPipes;
+    animation-timing-function: linear;
+    animation-duration: 6s;
+}
+
+@-webkit-keyframes animPipes {
+  0%{
+    transform: translate3d(em(100px), 0, 0);
+
+  }
+  100%{
+    transform: translate3d(em(-1150px), 0, 0);
+
+  }
+
+}
+/*
+@-moz-keyframes animPipes {
+    from { background-color: yellow; right: 0; }
+    to { background-color: green; right: -100px; }
+}
+@-o-keyframes animPipes {
+    from { background-color: yellow; right: 0; }
+    to { background-color: green; right: -100px; }
+}
+@keyframes animPipes {
+    from { background-color: yellow; right: 0; }
+    to { background-color: green; right: -100px; }
+}
+*/

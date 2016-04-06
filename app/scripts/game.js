@@ -12,7 +12,8 @@ window.Game = (function() {
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.isPlaying = false;
         // our code
-      //  this.Pipe = new window.Pipe(this.el.find('#pipes'), this);
+        this.Pipe = new window.Pipe(this.el.find('.pTop'), this);
+        this.Pipe = new window.Pipe(this.el.find('.pBot'), this);
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
