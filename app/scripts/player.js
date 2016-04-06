@@ -88,9 +88,6 @@ window.Player = (function() {
         if ((b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) && (b1 < y3 || y3 > b3 || r1 < x3 || x1 > r3)) {
             return false;
         }
-
-        var audio = new Audio('/sound/BossDeath.ogg');
-        audio.play();
         return this.game.gameover();
     };
 
