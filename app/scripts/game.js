@@ -16,6 +16,7 @@ window.Game = (function() {
         this.pipesOnScreen = [];
         this.Pipe = new window.Pipe(this);
         this.Pipe.generatePipes();
+        this.score = 0;
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
 	};
@@ -52,8 +53,8 @@ window.Game = (function() {
 	 * Starts a new game.
 	 */
 	Game.prototype.start = function() {
+        this.score = 0;
 		this.reset();
-
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
 		window.requestAnimationFrame(this.onFrame);
@@ -64,6 +65,7 @@ window.Game = (function() {
 	 * Resets the state of the game so a new game can be started.
 	 */
 	Game.prototype.reset = function() {
+        $('#score').html(this.score);
 		this.player.reset();
 	};
 
