@@ -17,6 +17,7 @@ window.Pipe = (function() {
         this.el.append(pipe.pTop);
         this.el.append(pipe.pBot);
         this.index++;
+        return pipe;
     };
 
     Pipe.prototype.createPipe = function() {

@@ -33,6 +33,9 @@ window.Player = (function() {
 		if (Controls.keys.left) {
 			this.pos.x -= delta * SPEED;
 		}*/
+        if(this.game.genPipes){
+            this.checkCollisionWithPipes(this.game.pipesOnScreen[0].pTop);
+        }
 		if (Controls.keys.down) {
 			this.pos.y += delta * SPEED;
 		}
@@ -52,6 +55,7 @@ window.Player = (function() {
 
 		this.checkCollisionWithBounds();
 
+
 		// Update UI
 		this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
 	};
@@ -64,6 +68,30 @@ window.Player = (function() {
 			return this.game.gameover();
 		}
 	};
+
+    Player.prototype.checkCollisionWithPipes = function ($div2) {
+        var x1 = $(this.el).offset().left;
+        var y1 = $(this.el).offset().top;
+        var h1 = $(this.el).outerHeight(true);
+        var w1 = $(this.el).outerWidth(true);
+        var b1 = y1 + h1;
+        var r1 = x1 + w1;
+        var x2 = $div2.offset().left;
+        var y2 = $div2.offset().top;
+        var h2 = $div2.outerHeight(true);
+        var w2 = $div2.outerWidth(true);
+        var b2 = y2 + h2;
+        var r2 = x2 + w2;
+        console.log('X1: ' + x1 + 'y1:' + y1 + 'x2:' + x2 + 'y2:' + y2);
+        if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) {
+            return false;
+        }
+        return this.game.gameover();
+    };
+
+    Player.prototype.removeOldPipes = function () {
+
+    };
 
 	return Player;
 
