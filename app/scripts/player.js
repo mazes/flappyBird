@@ -89,6 +89,8 @@ window.Player = (function() {
             return false;
         }
 
+        var audio = new Audio('/sound/BossDeath.ogg');
+        audio.play();
         return this.game.gameover();
     };
 
