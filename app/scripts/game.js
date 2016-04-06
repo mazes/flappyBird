@@ -12,6 +12,7 @@ window.Game = (function() {
         this.counter = 0;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.isPlaying = false;
+        this.genPipes = false;
         // our code
         this.Pipe = new window.Pipe(this);
         this.Pipe.generatePipes();
@@ -35,18 +36,15 @@ window.Game = (function() {
 
 		// Update game entities.
 		this.player.onFrame(delta);
-        /*setInterval(function(){
-            this.Pipe.spawnPipe(this.index);
-            this.index++;
-        }, 3000);
-*/
-		// Request next frame.
-        console.log(this.counter);
-        this.counter++;
-        if(this.counter === 120){
-            this.Pipe.spawnPipe();
-            this.counter = 0;
+
+        if(this.genPipes){
+            this.counter++;
+            if(this.counter === 120){
+                this.Pipe.spawnPipe();
+                this.counter = 0;
+            }
         }
+		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
 	};
 
@@ -74,6 +72,7 @@ window.Game = (function() {
 	 */
 	Game.prototype.gameover = function() {
 		this.isPlaying = false;
+        this.el.className = 'notransition';
 
 		// Should be refactored into a Scoreboard class.
 		var that = this;

@@ -5,9 +5,14 @@ window.Pipe = (function() {
         this.el = $('#pipe');
         this.currentPipes = [];
         this.index = 0;
+        this.maxPipes = 50;
     };
 
     Pipe.prototype.spawnPipe = function(){
+        if(this.index === this.maxPipes){
+            this.index = 0;
+        }
+
         var pipe = this.currentPipes[this.index];
         this.el.append(pipe.pTop);
         this.el.append(pipe.pBot);
@@ -36,7 +41,7 @@ window.Pipe = (function() {
     };
 
     Pipe.prototype.generatePipes = function(){
-        for(var i = 0; i < 50; i++){
+        for(var i = 0; i < this.maxPipes; i++){
             this.createPipe();
         }
     };
