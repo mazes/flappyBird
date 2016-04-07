@@ -16,6 +16,15 @@ window.AudioController = (function() {
         this.coin = this.coin.bind(this);
     };
 
+    var changeImage = function(){
+        var image = document.getElementById('toggleAudio');
+        if (image.src.match('/images/soundON.png')) {
+            image.src = '/images/soundOFF.png';
+        } else {
+            image.src = '/images/soundON.png';
+        }
+    };
+
     AudioController.prototype.dead = function() {
         if(this.playSounds){
             this.deathSound.play();
@@ -37,6 +46,7 @@ window.AudioController = (function() {
             this.playSounds = true;
             this.bgmusic.play();
         }
+        changeImage();
     };
 
     return AudioController;
