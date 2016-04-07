@@ -95,6 +95,7 @@ window.Player = (function() {
     Player.prototype.removePipeIfOutOfScreen = function () {
         for(var i = 0; i < this.game.pipesOnScreen.length; i++){
             if($(this.game.pipesOnScreen[i].pTop).offset().left <= 0){
+                console.log('removing');
                 $(this.game.pipesOnScreen[i].pTop).remove();
                 $(this.game.pipesOnScreen[i].pBot).remove();
                 this.game.pipesOnScreen.splice(i,1);
