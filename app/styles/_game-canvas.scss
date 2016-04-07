@@ -226,10 +226,11 @@
 #score {
     font-size: 40px;
     font-family: Impact, Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', 'Arial Black', 'sans serif';
-    text-shadow: 2px 2px black;
+    text-shadow: 2px 4px rgba(0,0,0,0.5);
+
     position: absolute;
+    color: red;
     top: 50px;
-    color: purple;
     margin-left: 50px;
     z-index: 5;
 }
