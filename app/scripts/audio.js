@@ -3,9 +3,9 @@ window.AudioController = (function() {
 
     var AudioController = function(){
         this.playSounds = true;
-        this.deathSound = new Audio('/sound/BossDeath.ogg');
-        this.coinSound = new Audio('/sound/coin.wav');
-        this.bgmusic = new Audio('/sound/background.mp3');
+        this.deathSound = new Audio('/sound/death.ogg');
+        this.coinSound = new Audio('/sound/coin.ogg');
+        this.bgmusic = new Audio('/sound/background.ogg');
         this.bgmusic.addEventListener('ended', function() {
             this.currentTime = 0;
             this.play();
