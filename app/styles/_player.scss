@@ -11,37 +11,50 @@
     background-image: url('../bird.png');
     background-size: 68px 192px;
 
+    // Fixing performance issues
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    transform: translateZ(0);
+    // End of performance issues
+
     -webkit-animation: animBird 300ms steps(4) infinite;
     animation: animBird 300ms steps(4) infinite;
 }
 
 @-webkit-keyframes animBird {
-   from { background-position: 0px 0px; }
-   to { background-position: 0px -192px; }
+    from { background-position: 0px 0px; }
+    to { background-position: 0px -192px; }
 }
 @-moz-keyframes animBird {
-   from { background-position: 0px 0px; }
-   to { background-position: 0px -192px; }
+    from { background-position: 0px 0px; }
+    to { background-position: 0px -192px; }
 }
 @-o-keyframes animBird {
-   from { background-position: 0px 0px; }
-   to { background-position: 0px -192px; }
+    from { background-position: 0px 0px; }
+    to { background-position: 0px -192px; }
 }
 @keyframes animBird {
-   from { background-position: 0px 0px; }
-   to { background-position: 0px -192px; }
+    from { background-position: 0px 0px; }
+    to { background-position: 0px -192px; }
 }
 
 //
 .moveUp {
-  animation: moveUpAnim 1s 0 1 linear;
+    animation: moveUpAnim 1s 0 1 linear;
 }
 
 @keyframes moveUpAnim {
-  0% {
-    transform: rotate3d(45deg) translate3d(0, 0, 0);
-  }
-  100% {
-    transform: rotate3d(0deg) translate3d(0,-20px,0);
-  }
+    0% {
+        transform: rotate3d(45deg) translate3d(0, 0, 0);
+    }
+    100% {
+        transform: rotate3d(0deg) translate3d(0,-20px,0);
+    }
 }

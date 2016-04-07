@@ -12,6 +12,21 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 }
 
+@mixin performance(){
+    // Fixing performance issues
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    transform: translateZ(0);
+    // End of fixing performance issues
+}
+
 .GameCanvas {
     // Design everything with a nice em of 10px.
     font-size: $base-font-size;
@@ -38,59 +53,57 @@
 
 }
 
-/* TEMPORARY PLACE FOR BACKGROUND WHILE I FIGURE OUT FUCKING GRUNT Y U NO GULP!!! */
-
-
-//ground start
 .groundContainer{
-  width: em(1024px);
-  height: em(60px);
-  position: absolute;
-  bottom: 0;
+    width: em(1024px);
+    height: em(60px);
+    position: absolute;
+    bottom: 0;
 
 }
 
 .groundTop{
-  color: black;
-  border-top: solid 2px rgb(142, 132, 6);
-  background: repeating-linear-gradient(
+    @include performance();
+
+    color: black;
+    border-top: solid 2px rgb(142, 132, 6);
+    background: repeating-linear-gradient(
     -45deg,
     transparent,
     transparent 5px,
     #59aa08 5px,
     #59aa08 10px
-  ),
-  linear-gradient(
+    ),
+    linear-gradient(
     to bottom,
     #59aa08,
     #7eeb4b
-  );
+    );
 
-  height: 25px;
-  width: em(1100px);
-  animation: movingGround 0.5s infinite;
-  animation-timing-function: linear;
-  transform-origin: left;
+    height: 25px;
+    width: em(1100px);
+    animation: movingGround 0.5s infinite;
+    animation-timing-function: linear;
+    transform-origin: left;
 
 }
 
 
 
 .groundBottom{
-  background-color: rgb(41, 32, 2);
-  height: 35px;
-  width: 100%;
+    background-color: rgb(41, 32, 2);
+    height: 35px;
+    width: 100%;
 }
 
 @keyframes movingGround {
-  0%{
-    transform: translate3d(0, 0, 0);
+    0%{
+        transform: translate3d(0, 0, 0);
 
-  }
-  100%{
-    transform: translate3d(-75px, 0, 0);
+    }
+    100%{
+        transform: translate3d(-75px, 0, 0);
 
-  }
+    }
 
 }
 
@@ -98,128 +111,116 @@
 // CLOUD
 
 .cloud {
-	width: 200px; height: 60px;
-	background: #fff;
+    width: 200px; height: 60px;
+    background: #fff;
 
-	border-radius: 200px;
-	-moz-border-radius: 200px;
-	-webkit-border-radius: 200px;
-	position: relative;
-  top: 30px;
+    border-radius: 200px;
+    -moz-border-radius: 200px;
+    -webkit-border-radius: 200px;
+    position: relative;
+    top: 30px;
 }
 
 .cloud:before, .cloud:after {
-	content: '';
-	position: absolute;
-	background: #fff;
-	width: 100px; height: 80px;
-	position: absolute; top: -15px; left: 10px;
+    @include performance();
 
-	border-radius: 100px;
-	-moz-border-radius: 100px;
-	-webkit-border-radius: 100px;
-  transform: translate3d(0,0,0);
+    content: '';
+    position: absolute;
+    background: #fff;
+    width: 100px; height: 80px;
+    position: absolute; top: -15px; left: 10px;
 
-	-webkit-transform: rotate3d(30deg);
-	transform: rotate3d(30deg);
-	-moz-transform: rotate3d(30deg);
+    border-radius: 100px;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -webkit-transform: rotate3d(30deg);
+    transform: rotate3d(30deg);
+    -moz-transform: rotate3d(30deg);
 }
 
 .cloud:after {
-	width: 120px; height: 120px;
-	top: -55px; left: auto; right: 15px;
+    width: 120px; height: 120px;
+    top: -55px; left: auto; right: 15px;
 }
 
 /*Time to animate*/
 .x1 {
-  transform: translate3d(0,0,0);
-	-webkit-animation: moveclouds 30s linear infinite;
-	-moz-animation: moveclouds 30s linear infinite;
-	-o-animation: moveclouds 30s linear infinite;
+    @include performance();
+
+    -webkit-animation: moveclouds 30s linear infinite;
+    -moz-animation: moveclouds 30s linear infinite;
+    -o-animation: moveclouds 30s linear infinite;
 }
 
 /*variable speed, opacity, and position of clouds for realistic effect*/
 .x2 {
-	left: 200px;
-  transform: translate3d(0,0,0);
-	-webkit-transform: scale(0.6);
-	-moz-transform: scale(0.6);
-	transform: scale(0.6);
-	opacity: 0.6; /*opacity proportional to the size*/
+    @include performance();
 
-	/*Speed will also be proportional to the size and opacity*/
-	/*More the speed. Less the time in 's' = seconds*/
-	-webkit-animation: moveclouds 25s linear infinite;
-	-moz-animation: moveclouds 25s linear infinite;
-	-o-animation: moveclouds 25s linear infinite;
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    transform: scale(0.6);
+    opacity: 0.6; /*opacity proportional to the size*/
+
+    /*Speed will also be proportional to the size and opacity*/
+    /*More the speed. Less the time in 's' = seconds*/
+    -webkit-animation: moveclouds 25s linear infinite;
+    -moz-animation: moveclouds 25s linear infinite;
+    -o-animation: moveclouds 25s linear infinite;
 }
 
 .x3 {
-  transform: translate3d(0,0,0);
-	left: -250px; top: -200px;
+    @include performance();
 
-	-webkit-transform: scale(0.8);
-	-moz-transform: scale(0.8);
-	transform: scale(0.8);
-	opacity: 0.8; /*opacity proportional to the size*/
-
-	-webkit-animation: moveclouds 25s linear infinite;
-	-moz-animation: moveclouds 25s linear infinite;
-	-o-animation: moveclouds 25s linear infinite;
+    left: -250px; top: -200px;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.8; /*opacity proportional to the size*/
+    -webkit-animation: moveclouds 25s linear infinite;
+    -moz-animation: moveclouds 25s linear infinite;
+    -o-animation: moveclouds 25s linear infinite;
 }
 
 .x4 {
-  transform: translate3d(0,0,0);
-	left: 470px; top: -250px;
+    @include performance();
 
-	-webkit-transform: scale(0.75);
-	-moz-transform: scale(0.75);
-	transform: scale(0.75);
-	opacity: 0.75; /*opacity proportional to the size*/
+    left: 470px; top: -250px;
+    -webkit-transform: scale(0.75);
+    -moz-transform: scale(0.75);
+    transform: scale(0.75);
+    opacity: 0.75; /*opacity proportional to the size*/
 
-	-webkit-animation: moveclouds 21s linear infinite;
-	-moz-animation: moveclouds 21s linear infinite;
-	-o-animation: moveclouds 21s linear infinite;
+    -webkit-animation: moveclouds 21s linear infinite;
+    -moz-animation: moveclouds 21s linear infinite;
+    -o-animation: moveclouds 21s linear infinite;
 }
 
 .x5 {
-  transform: translate3d(0,0,0);
-	left: -150px; top: -150px;
+    @include performance();
 
-	-webkit-transform: scale(0.8);
-	-moz-transform: scale(0.8);
-	transform: scale(0.8);
-	opacity: 0.8; /*opacity proportional to the size*/
+    left: -150px; top: -150px;
 
-	-webkit-animation: moveclouds 27s linear infinite;
-	-moz-animation: moveclouds 27s linear infinite;
-	-o-animation: moveclouds 27s linear infinite;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.8; /*opacity proportional to the size*/
+
+    -webkit-animation: moveclouds 27s linear infinite;
+    -moz-animation: moveclouds 27s linear infinite;
+    -o-animation: moveclouds 27s linear infinite;
 }
-/*
+
 @-webkit-keyframes moveclouds {
-	0% {margin-left: 1000px;}
-	100% {margin-left: -1000px;}
+    0% {transform: translate3d(1400px,0,0);}
+    100% {transform: translate3d(-600px,0,0);}
 }
 @-moz-keyframes moveclouds {
-	0% {margin-left: 1000px;}
-	100% {margin-left: -1000px;}
+    0% {transform: translate3d(1400px,0,0);}
+    100% {transform: translate3d(-600px,0,0);}
 }
 @-o-keyframes moveclouds {
-	0% {margin-left: 1000px;}
-	100% {margin-left: -1000px;}
-}
-*/
-@-webkit-keyframes moveclouds {
-  0% {transform: translate3d(1400px,0,0);}
-	100% {transform: translate3d(-600px,0,0);}
-}
-@-moz-keyframes moveclouds {
-  0% {transform: translate3d(1400px,0,0);}
-	100% {transform: translate3d(-600px,0,0);}
-}
-@-o-keyframes moveclouds {
-  0% {transform: translate3d(1400px,0,0);}
-	100% {transform: translate3d(-600px,0,0);}
+    0% {transform: translate3d(1400px,0,0);}
+    100% {transform: translate3d(-600px,0,0);}
 }
 
 #score {
@@ -234,15 +235,8 @@
 }
 
 .stopAnimation {
-  /*
-  -webkit-animation: none !important;
-  -o-animation: none !important;
-  -moz-animation: none !important;
-  animation: none !important;
-  */
-
-  -webkit-animation-play-state: paused;
-  -o-animation-play-state: paused;
-  -moz-animation-play-state: paused;
-  animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+    -o-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    animation-play-state: paused;
 }
