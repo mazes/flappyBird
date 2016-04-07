@@ -35,7 +35,8 @@ window.Pipe = (function() {
 
         var pipe = {
             pBot: pBot,
-            pTop: pTop
+            pTop: pTop,
+            score: 0
         };
 
         this.currentPipes.push(pipe);

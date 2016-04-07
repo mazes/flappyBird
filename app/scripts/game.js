@@ -93,7 +93,6 @@ window.Game = (function() {
         var that = this;
         var scoreboardEl = this.el.find('.Scoreboard');
         this.setScores();
-        console.log(this.highScore, this.score);
         scoreboardEl
             .addClass('is-visible')
                 .find('.Scoreboard-restart')

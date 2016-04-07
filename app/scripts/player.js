@@ -16,6 +16,7 @@ window.Player = (function() {
 		this.el = el;
 		this.game = game;
 		this.pos = { x: 0, y: 0 };
+        this.lastFrameScore = false;
 	};
 
 	/**
@@ -102,13 +103,16 @@ window.Player = (function() {
     };
 
     Player.prototype.checkForScore = function (pipe) {
-        var pipeOffset = Math.floor($(pipe.pTop).offset().left + 68 - $(this.el).offset().left);
-        if(pipeOffset < 2 && pipeOffset > -2){
-            this.game.score++;
-            this.game.audioController.coin();
-            $('#score').html(this.game.score);
+        var pipeOffset = $(pipe.pTop).offset().left + 68 - $(this.el).offset().left;
+        if(pipeOffset <= 0 && pipeOffset > -10){ // 10px range for laggy games still giving score
+            console.log('lastscore: ' + this.lastFrameScore);
+            if(!pipe.score){
+                this.game.score++;
+                this.game.audioController.coin();
+                $('#score').html(this.game.score);
+                pipe.score = 1;
+            }
         }
-
     };
 
 	return Player;
