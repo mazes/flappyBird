@@ -74,6 +74,7 @@ window.Game = (function() {
         this.score = 0;
         this.counter = 0;
         this.genPipes = false;
+        this.pipesOnScreen = [];
         $('#score').html(this.score);
 		this.player.reset();
 	};
