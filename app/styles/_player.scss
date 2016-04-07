@@ -55,14 +55,35 @@
 
 //
 .moveUp {
-    animation: moveUpAnim 1s 0 1 linear;
+    animation: moveUpAnim .5s 0 1 linear;
 }
 
+.moveDown {
+  animation: moveDownAnim 1s 0 1 ease-in;
+}
+
+@-webkit-keyframes moveUpAnim {
+    to { transform: translateZ(0) rotate(45deg); }
+}
+@-moz-keyframes moveUpAnim {
+    to { transform: translateZ(0) rotate(45deg); }
+}
+@-o-keyframes moveUpAnim {
+    to { transform: translateZ(0) rotate(45deg); }
+}
 @keyframes moveUpAnim {
-    0% {
-        transform: rotate3d(45deg) translate3d(0, 0, 0);
-    }
-    100% {
-        transform: rotate3d(0deg) translate3d(0,-20px,0);
-    }
+    to { transform: translateZ(0) rotate(45deg); }
+}
+
+@-webkit-keyframes moveDownAnim {
+    to { transform: translateZ(0) rotate(-45deg); }
+}
+@-moz-keyframes moveDownAnim {
+    to { transform: translateZ(0) rotate(-45deg); }
+}
+@-o-keyframes moveDownAnim {
+    to { transform: translateZ(0) rotate(-45deg); }
+}
+@keyframes moveDownAnim {
+    to { transform: translateZ(0) rotate(-45deg); }
 }
