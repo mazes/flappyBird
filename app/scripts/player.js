@@ -28,9 +28,6 @@ window.Player = (function() {
     };
 
     Player.prototype.onFrame = function(delta) {
-        if(!this.game.isPlaying){
-            return;
-        }
         if (Controls.keys.down) {
             this.pos.y += delta * SPEED;
         }
