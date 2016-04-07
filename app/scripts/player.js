@@ -57,7 +57,7 @@ window.Player = (function() {
             this.checkForScore(this.game.pipesOnScreen[i]);
         }
 		// Update UI
-		this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+		this.el.css('transform', 'translate3d(' + this.pos.x + 'em, ' + this.pos.y + 'em, 0)');
 	};
 
 	Player.prototype.checkCollisionWithBounds = function() {
