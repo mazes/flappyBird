@@ -1,7 +1,7 @@
 window.AudioController = (function() {
     'use strict';
 
-    var AudioController = function(){
+    var AudioController = function() {
         this.playSounds = true;
         this.deathSound = new Audio('/sound/death.ogg');
         this.coinSound = new Audio('/sound/coin.ogg');
@@ -16,7 +16,7 @@ window.AudioController = (function() {
         this.coin = this.coin.bind(this);
     };
 
-    var changeImage = function(){
+    var changeImage = function() {
         var image = document.getElementById('toggleAudio');
         if (image.src.match('/images/soundON.png')) {
             image.src = '/images/soundOFF.png';
@@ -37,7 +37,7 @@ window.AudioController = (function() {
         }
     };
 
-    AudioController.prototype.mute = function(){
+    AudioController.prototype.mute = function() {
         if(this.playSounds){
             this.playSounds = false;
             this.bgmusic.pause();

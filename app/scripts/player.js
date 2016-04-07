@@ -5,7 +5,7 @@ window.Player = (function() {
 
     // All these constants are in em's, multiply by 10 pixels
     // for 1024x576px canvas.
-    var SPEED = 35; // * 10 pixels per second
+    var SPEED = 40; // * 10 pixels per second
     var DROPSPEED = 25;
     var WIDTH = 5;
     var HEIGHT = 5;
@@ -28,6 +28,9 @@ window.Player = (function() {
     };
 
     Player.prototype.onFrame = function(delta) {
+        if(!this.game.isPlaying){
+            return;
+        }
         if (Controls.keys.down) {
             this.pos.y += delta * SPEED;
         }
@@ -66,7 +69,7 @@ window.Player = (function() {
         }
     };
 
-    Player.prototype.checkCollisionWithPipes = function (pipe) {
+    Player.prototype.checkCollisionWithPipes = function(pipe) {
         var x1 = $(this.el).offset().left;
         var y1 = $(this.el).offset().top;
         var h1 = $(this.el).outerHeight(false);

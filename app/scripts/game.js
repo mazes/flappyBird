@@ -31,7 +31,7 @@ window.Game = (function() {
     */
     Game.prototype.onFrame = function() {
         // Check if the game loop should stop.
-        if (!this.isPlaying) {
+        if(!this.isPlaying){
             return;
         }
         // Calculate how long since last frame in seconds.
@@ -107,7 +107,7 @@ window.Game = (function() {
         }
     };
 
-    Game.prototype.removePipeIfOutOfScreen = function () {
+    Game.prototype.removePipeIfOutOfScreen = function() {
         var gameOffset = $(this.el).offset().left - 68;
         for(var i = 0; i < this.pipesOnScreen.length; i++){
             if($(this.pipesOnScreen[i].pTop).offset().left - gameOffset <= 0){

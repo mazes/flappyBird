@@ -1,4 +1,5 @@
 window.Pipe = (function() {
+
     'use strict';
 
     var Pipe = function(game) {
@@ -9,7 +10,7 @@ window.Pipe = (function() {
         this.maxPipes = 50;
     };
 
-    Pipe.prototype.spawnPipe = function(){
+    Pipe.prototype.spawnPipe = function() {
         if(this.index === this.maxPipes){
             this.index = 0;
         }
@@ -43,7 +44,7 @@ window.Pipe = (function() {
         this.currentPipes.push(pipe);
     };
 
-    Pipe.prototype.generatePipes = function(){
+    Pipe.prototype.generatePipes = function() {
         for(var i = 0; i < this.maxPipes; i++){
             this.createPipe();
         }

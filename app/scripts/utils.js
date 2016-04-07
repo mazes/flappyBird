@@ -1,7 +1,7 @@
 /**
  * Cross browser RequestAnimationFrame
  */
-if (!window.requestAnimationFrame) {
+if (!window.requestAnimationFrame){
     window.requestAnimationFrame = (function() {
         'use strict';
         return window.requestAnimationFrame ||

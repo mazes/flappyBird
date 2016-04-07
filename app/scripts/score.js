@@ -9,15 +9,13 @@ window.Score = (function() {
     };
 
     Score.prototype.showScoreBoard = function() {
-        this.setScores();
+        this.game.isPlaying = false;
         var that = this;
-        this.el
-        .addClass('is-visible')
-        .find('.Scoreboard-restart')
-        .one('click', function() {
-            that.el.removeClass('is-visible');
-            that.game.cleanUpPipes();
-            that.game.start();
+        this.setScores();
+        this.el.addClass('is-visible');
+        var reset = $('.Scoreboard-restart');
+        reset.one('click', function() {
+            that.resetGame();
         });
     };
 
@@ -29,7 +27,7 @@ window.Score = (function() {
         $('#highScore').html(this.highScore);
     };
 
-    Score.prototype.checkForScore = function (pipe, playerEl) {
+    Score.prototype.checkForScore = function(pipe, playerEl) {
         var pipeOffset = $(pipe.pTop).offset().left + 68 - $(playerEl).offset().left;
         if(pipeOffset <= 0 && pipeOffset > -10){ // 10px range for laggy games still giving score
             if(!pipe.score){
@@ -39,6 +37,12 @@ window.Score = (function() {
                 pipe.score = 1;
             }
         }
+    };
+
+    Score.prototype.resetGame = function() {
+        this.el.removeClass('is-visible');
+        this.game.cleanUpPipes();
+        this.game.start();
     };
 
     return Score;
