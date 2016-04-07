@@ -56,9 +56,9 @@ window.Game = (function() {
     };
 
     /**
-     * Starts a new game.
+    * Starts a new game.
     */
-	Game.prototype.start = function() {
+    Game.prototype.start = function() {
         this.reset();
         this.startAnimation();
         // Restart the onFrame loop
@@ -84,9 +84,6 @@ window.Game = (function() {
     */
     Game.prototype.gameover = function() {
         this.isPlaying = false;
-        // TODO MAKE AUDIO CONTROLLER?
-        /*var audio = new Audio('/sound/BossDeath.ogg');
-        audio.play();*/
         this.audioController.dead();
         this.stopAnimation();
         // Should be refactored into a Scoreboard class.
@@ -94,13 +91,13 @@ window.Game = (function() {
         var scoreboardEl = this.el.find('.Scoreboard');
         this.setScores();
         scoreboardEl
-            .addClass('is-visible')
-                .find('.Scoreboard-restart')
-                    .one('click', function() {
-                        scoreboardEl.removeClass('is-visible');
-                        that.cleanUpPipes();
-                        that.start();
-                    });
+        .addClass('is-visible')
+        .find('.Scoreboard-restart')
+        .one('click', function() {
+            scoreboardEl.removeClass('is-visible');
+            that.cleanUpPipes();
+            that.start();
+        });
     };
 
 
@@ -132,7 +129,7 @@ window.Game = (function() {
     /**
     * Some shared constants.
     */
-     Game.prototype.WORLD_WIDTH = 102.4;
+    Game.prototype.WORLD_WIDTH = 102.4;
     Game.prototype.WORLD_HEIGHT = 57.6;
 
     return Game;

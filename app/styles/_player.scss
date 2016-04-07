@@ -1,16 +1,4 @@
-
-.Player {
-    // Absolutely position entities at 0,0 and use transform to
-    // move it around.
-    position: absolute;
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: em(68px);
-    height: em(48px);
-    background-image: url('../bird.png');
-    background-size: 68px 192px;
-
+@mixin performance(){
     // Fixing performance issues
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -21,8 +9,28 @@
     -moz-perspective: 1000;
     -ms-perspective: 1000;
     perspective: 1000;
+
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
     transform: translateZ(0);
-    // End of performance issues
+    display: block;
+    // End of fixing performance issues
+}
+
+.Player {
+    @include performance();
+    // Absolutely position entities at 0,0 and use transform to
+    // move it around.
+    position: absolute;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: em(68px);
+    height: em(48px);
+    background-image: url('/images/bird.png');
+    background-size: 68px 192px;
 
     -webkit-animation: animBird 300ms steps(4) infinite;
     animation: animBird 300ms steps(4) infinite;
