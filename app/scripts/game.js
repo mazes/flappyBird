@@ -59,19 +59,21 @@ window.Game = (function() {
 	 * Starts a new game.
 	 */
 	Game.prototype.start = function() {
-        this.score = 0;
 		this.reset();
 		this.startAnimation();
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
 		window.requestAnimationFrame(this.onFrame);
-		this.isPlaying = true;
+        this.isPlaying = true;
 	};
 
 	/**
 	 * Resets the state of the game so a new game can be started.
 	 */
 	Game.prototype.reset = function() {
+        this.score = 0;
+        this.counter = 0;
+        this.genPipes = false;
         $('#score').html(this.score);
 		this.player.reset();
 	};
@@ -99,6 +101,7 @@ window.Game = (function() {
 			.find('.Scoreboard-restart')
 				.one('click', function() {
 					scoreboardEl.removeClass('is-visible');
+                    that.cleanUpPipes();
 					that.start();
 				});
 	};
@@ -122,6 +125,12 @@ window.Game = (function() {
         $('#highScore').html(this.highScore);
     };
 
+    Game.prototype.cleanUpPipes = function() {
+        for(var i = 0; i < this.pipesOnScreen.length; i++){
+            $(this.pipesOnScreen[i].pTop).remove();
+            $(this.pipesOnScreen[i].pBot).remove();
+        }
+    };
 	/**
 	 * Some shared constants.
 	 */

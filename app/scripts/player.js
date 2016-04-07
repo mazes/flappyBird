@@ -32,10 +32,12 @@ window.Player = (function() {
 		}
 		if (Controls.keys.up){
 			this.pos.y -= delta * SPEED;
+    		this.isPlaying = true;
             this.game.genPipes = true;
 		}
         else if (Controls.keys.space){
             this.pos.y -= delta * SPEED;
+    		this.isPlaying = true;
             this.game.genPipes = true;
         }
         else{
@@ -49,7 +51,9 @@ window.Player = (function() {
             if(this.removePipeIfOutOfScreen(this.game.pipesOnScreen[i])){
                 this.game.pipesOnScreen.splice(i,1);
             }
-            this.checkCollisionWithPipes(this.game.pipesOnScreen[i]);
+            if(this.checkCollisionWithPipes(this.game.pipesOnScreen[i])){
+                break;
+            }
             this.checkForScore(this.game.pipesOnScreen[i]);
         }
 		// Update UI
@@ -68,8 +72,8 @@ window.Player = (function() {
     Player.prototype.checkCollisionWithPipes = function (pipe) {
         var x1 = $(this.el).offset().left;
         var y1 = $(this.el).offset().top;
-        var h1 = $(this.el).outerHeight(true);
-        var w1 = $(this.el).outerWidth(true);
+        var h1 = $(this.el).outerHeight(false);
+        var w1 = $(this.el).outerWidth(false);
         var b1 = y1 + h1;
         var r1 = x1 + w1;
         var x2 = $(pipe.pTop).offset().left;
