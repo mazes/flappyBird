@@ -74,6 +74,8 @@
 
 }
 
+
+
 .groundBottom{
   background-color: rgb(41, 32, 2);
   height: 35px;
@@ -279,4 +281,18 @@
     color: red;
     margin-left: 100px;
     z-index: 1;
+}
+
+.stopAnimation {
+  /*
+  -webkit-animation: none !important;
+  -o-animation: none !important;
+  -moz-animation: none !important;
+  animation: none !important;
+  */
+
+  -webkit-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  animation-play-state: paused;
 }

@@ -60,6 +60,7 @@ window.Game = (function() {
 	Game.prototype.start = function() {
         this.score = 0;
 		this.reset();
+		this.startAnimation();
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
 		window.requestAnimationFrame(this.onFrame);
@@ -85,6 +86,8 @@ window.Game = (function() {
         audio.play();*/
         this.audioController.dead();
 
+				this.stopAnimation();
+
         // Should be refactored into a Scoreboard class.
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
@@ -95,6 +98,16 @@ window.Game = (function() {
 					scoreboardEl.removeClass('is-visible');
 					that.start();
 				});
+	};
+
+	Game.prototype.stopAnimation = function() {
+		this.el.find('*').addClass('stopAnimation');
+		console.log('animation stopeed!');
+	};
+
+	Game.prototype.startAnimation = function() {
+		this.el.find('*').removeClass('stopAnimation');
+		console.log('animation started');
 	};
 	/**
 	 * Some shared constants.
