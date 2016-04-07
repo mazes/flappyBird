@@ -16,6 +16,7 @@ window.Player = (function() {
 		this.el = el;
 		this.game = game;
 		this.pos = { x: 0, y: 0 };
+        this.lastFrameScore = false;
 	};
 
 	/**
@@ -48,14 +49,10 @@ window.Player = (function() {
 
 		this.checkCollisionWithBounds();
         for(var i = 0; i < this.game.pipesOnScreen.length; i++){
-            if(this.removePipeIfOutOfScreen(this.game.pipesOnScreen[i])){
-                this.game.pipesOnScreen.splice(i,1);
-            }
-            if(this.checkCollisionWithPipes(this.game.pipesOnScreen[i])){
-                break;
-            }
+            this.checkCollisionWithPipes(this.game.pipesOnScreen[i]);
             this.checkForScore(this.game.pipesOnScreen[i]);
         }
+        this.removePipeIfOutOfScreen();
 		// Update UI
 		this.el.css('transform', 'translate3d(' + this.pos.x + 'em, ' + this.pos.y + 'em, 0)');
 	};
@@ -95,24 +92,28 @@ window.Player = (function() {
         return this.game.gameover();
     };
 
-    Player.prototype.removePipeIfOutOfScreen = function (pipe) {
-        if($(pipe.pTop).offset().left + 68 < 0){
-            $(pipe.pTop).remove();
-            $(pipe.pBot).remove();
-            return true;
+    Player.prototype.removePipeIfOutOfScreen = function () {
+        var gameOffset = $(this.game.el).offset().left - 68;
+        for(var i = 0; i < this.game.pipesOnScreen.length; i++){
+            if($(this.game.pipesOnScreen[i].pTop).offset().left - gameOffset <= 0){
+                $(this.game.pipesOnScreen[i].pTop).remove();
+                $(this.game.pipesOnScreen[i].pBot).remove();
+                this.game.pipesOnScreen.splice(i,1);
+            }
         }
-
-        return false;
     };
 
     Player.prototype.checkForScore = function (pipe) {
-        var pipeOffset = Math.floor($(pipe.pTop).offset().left + 68 - $(this.el).offset().left);
-        if(pipeOffset < 2 && pipeOffset > -2){
-            this.game.score++;
-            this.game.audioController.coin();
-            $('#score').html(this.game.score);
+        var pipeOffset = $(pipe.pTop).offset().left + 68 - $(this.el).offset().left;
+        if(pipeOffset <= 0 && pipeOffset > -10){ // 10px range for laggy games still giving score
+            console.log('lastscore: ' + this.lastFrameScore);
+            if(!pipe.score){
+                this.game.score++;
+                this.game.audioController.coin();
+                $('#score').html(this.game.score);
+                pipe.score = 1;
+            }
         }
-
     };
 
 	return Player;
