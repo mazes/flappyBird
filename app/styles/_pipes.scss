@@ -20,7 +20,7 @@
 }
 
 @mixin pipeAnimations(){
-    background-color: blue;
+    background-color: transparent;
     position: absolute;
     right: -100px;
     width: em(68px);
@@ -36,12 +36,40 @@
     @include performance();
     @include pipeAnimations();
     top: 0;
+    background-image: url('../images/pipe.png');
+    background-size: contain;
+    background-repeat: repeat-y;
+    background-position: center;
 }
+
+.pTop:after {
+  content: '';
+    position: absolute;
+    bottom: 0;
+    width: 68px;
+    height: 33px;
+    background-image: url("../images/pipe-down.png");
+    background-size: cover;
+}
+
+ .pBot:after {
+   content: '';
+     position: absolute;
+     top: 0;
+     width: 68px;
+     height: 33px;
+     background-image: url("../images/pipe-up.png");
+     background-size: cover;
+ }
 
 .pBot {
     @include performance();
     @include pipeAnimations();
     bottom: 0;
+    background-image: url('../images/pipe.png');
+    background-size: contain;
+    background-repeat: repeat-y;
+    background-position: center;
 }
 
 @-webkit-keyframes animPipes {
