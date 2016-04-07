@@ -1,23 +1,25 @@
+@import 'game-canvas';
 
 .Scoreboard {
-    position: absolute;
-    left: 50%;
-    top: em(80px);
-    height: em(300px);
-    width: em(400px);
-    margin-left: em(-200px);
-    box-sizing: border-box;
-    border-radius: 20px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-    z-index: 10;
 
-    background: purple;
-    text-align: center;
+	position: absolute;
+	left: 50%;
+	top: em(80px);
+	height: em(300px);
+	width: em(500px);
+	margin-left: em(-200px);
+	box-sizing: border-box;
+	border-radius: 20px;
+	box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+	z-index: 10;
+	background: rgb(215, 114, 190);
+	@include linearGradient(rgb(215, 114, 190), #FFFFFF) ;
 
-    // Keep it off-screen
-    transform: translateZ(0);
-    transform: translate3d(0, em(-400px), 0);
-    transition: transform 1s;
+
+	// Keep it off-screen
+  transform: translateZ(0);
+	transform: translate3d(0, em(-400px), 0);
+	transition: transform 1s;
 }
 
 /**
@@ -28,12 +30,14 @@
 }
 
 .Scoreboard-restart {
-    margin-top: em(10px);
-    font-size: inherit;
-    padding: em(4px) em(15px);
-    border: em(2px) solid white;
-    background: none;
-    cursor: pointer;
+	margin-top: em(10px);
+  position: absolute;
+	top: em(120px); right: em(25px);
+	font-size: inherit;
+	padding: em(4px) em(15px);
+	border: em(2px) solid white;
+	background: none;
+	cursor: pointer;
 }
 
 .Scoreboard-restartText {
@@ -49,10 +53,25 @@
     color: white;
 }
 
+.Scoreboard-score-now {
+	position: absolute;
+	@extend .Scoreboard-score;
+	top: em(10px); right: em(10px);
+}
+
+.Scoreboard-score-high {
+	position: absolute;
+	@extend .Scoreboard-score;
+	top: em(30px); right: em(10px);
+}
+
 .scoreImg {
-    margin-top: em(10px);
-    border-radius: 20px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5 )
+	position: absolute;
+	top: em(10px); left: em(10px);
+	opacity: 0.7;
+	border-radius: 20px;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5 )
+
 }
 
 #currentScore {
