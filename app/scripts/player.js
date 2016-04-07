@@ -103,10 +103,9 @@ window.Player = (function() {
 
     Player.prototype.checkForScore = function (pipe) {
         var pipeOffset = Math.floor($(pipe.pTop).offset().left + 68 - $(this.el).offset().left);
-        console.log(pipeOffset);
         if(pipeOffset < 2 && pipeOffset > -2){
-            console.log('SCORE!!!!');
             this.game.score++;
+            this.game.audioController.coin();
             $('#score').html(this.game.score);
         }
 

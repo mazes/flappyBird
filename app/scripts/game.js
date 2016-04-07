@@ -11,12 +11,17 @@ window.Game = (function() {
 		this.el = el;
         this.counter = 0;
 		this.player = new window.Player(this.el.find('.Player'), this);
-		this.isPlaying = false;
+        this.audioController = new window.AudioController();
+        this.isPlaying = false;
         this.genPipes = false;
         this.pipesOnScreen = [];
         this.Pipe = new window.Pipe(this);
         this.Pipe.generatePipes();
         this.score = 0;
+
+        this.muteButton = document.getElementById('mute');
+        this.muteButton.onclick = this.audioController.mute;
+
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
 	};
@@ -76,8 +81,9 @@ window.Game = (function() {
 		this.isPlaying = false;
 
         // TODO MAKE AUDIO CONTROLLER?
-        var audio = new Audio('/sound/BossDeath.ogg');
-        audio.play();
+        /*var audio = new Audio('/sound/BossDeath.ogg');
+        audio.play();*/
+        this.audioController.dead();
 
         // Should be refactored into a Scoreboard class.
 		var that = this;
