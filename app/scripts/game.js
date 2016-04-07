@@ -1,4 +1,3 @@
-
 window.Game = (function() {
     'use strict';
 
@@ -11,14 +10,13 @@ window.Game = (function() {
         this.el = el;
         this.counter = 0;
         this.player = new window.Player(this.el.find('.Player'), this);
+        this.score = new window.Score(this.el.find('.Scoreboard'), this);
         this.audioController = new window.AudioController();
         this.isPlaying = false;
         this.genPipes = false;
         this.pipesOnScreen = [];
         this.Pipe = new window.Pipe(this);
         this.Pipe.generatePipes();
-        this.score = 0;
-        this.highScore = 0;
 
         this.muteButton = document.getElementById('mute');
         this.muteButton.onclick = this.audioController.mute;
@@ -71,11 +69,11 @@ window.Game = (function() {
     * Resets the state of the game so a new game can be started.
     */
     Game.prototype.reset = function() {
-        this.score = 0;
+        this.score.score = 0;
         this.counter = 0;
         this.genPipes = false;
         this.pipesOnScreen = [];
-        $('#score').html(this.score);
+        $('#score').html(this.score.score);
         this.player.reset();
     };
 
@@ -86,18 +84,9 @@ window.Game = (function() {
         this.isPlaying = false;
         this.audioController.dead();
         this.stopAnimation();
+
         // Should be refactored into a Scoreboard class.
-        var that = this;
-        var scoreboardEl = this.el.find('.Scoreboard');
-        this.setScores();
-        scoreboardEl
-        .addClass('is-visible')
-        .find('.Scoreboard-restart')
-        .one('click', function() {
-            scoreboardEl.removeClass('is-visible');
-            that.cleanUpPipes();
-            that.start();
-        });
+        this.score.showScoreBoard();
     };
 
 
@@ -111,18 +100,21 @@ window.Game = (function() {
         console.log('animation started');
     };
 
-    Game.prototype.setScores = function() {
-        $('#currentScore').html(this.score);
-        if( this.score > this.highScore){
-            this.highScore = this.score;
-        }
-        $('#highScore').html(this.highScore);
-    };
-
     Game.prototype.cleanUpPipes = function() {
         for(var i = 0; i < this.pipesOnScreen.length; i++){
             $(this.pipesOnScreen[i].pTop).remove();
             $(this.pipesOnScreen[i].pBot).remove();
+        }
+    };
+
+    Game.prototype.removePipeIfOutOfScreen = function () {
+        var gameOffset = $(this.el).offset().left - 68;
+        for(var i = 0; i < this.pipesOnScreen.length; i++){
+            if($(this.pipesOnScreen[i].pTop).offset().left - gameOffset <= 0){
+                $(this.pipesOnScreen[i].pTop).remove();
+                $(this.pipesOnScreen[i].pBot).remove();
+                this.pipesOnScreen.splice(i,1);
+            }
         }
     };
 

@@ -1,44 +1,44 @@
 window.Player = (function() {
-	'use strict';
+    'use strict';
 
-	var Controls = window.Controls;
+    var Controls = window.Controls;
 
-	// All these constants are in em's, multiply by 10 pixels
-	// for 1024x576px canvas.
-	var SPEED = 35; // * 10 pixels per second
+    // All these constants are in em's, multiply by 10 pixels
+    // for 1024x576px canvas.
+    var SPEED = 35; // * 10 pixels per second
     var DROPSPEED = 25;
-	var WIDTH = 5;
-	var HEIGHT = 5;
-	var INITIAL_POSITION_X = 30;
-	var INITIAL_POSITION_Y = 25;
+    var WIDTH = 5;
+    var HEIGHT = 5;
+    var INITIAL_POSITION_X = 30;
+    var INITIAL_POSITION_Y = 25;
 
-	var Player = function(el, game) {
-		this.el = el;
-		this.game = game;
-		this.pos = { x: 0, y: 0 };
+    var Player = function(el, game) {
+        this.el = el;
+        this.game = game;
+        this.pos = { x: 0, y: 0 };
         this.lastFrameScore = false;
-	};
+    };
 
-	/**
-	 * Resets the state of the player for a new game.
-	 */
-	Player.prototype.reset = function() {
-		this.pos.x = INITIAL_POSITION_X;
-		this.pos.y = INITIAL_POSITION_Y;
-	};
+    /**
+    * Resets the state of the player for a new game.
+    */
+    Player.prototype.reset = function() {
+        this.pos.x = INITIAL_POSITION_X;
+        this.pos.y = INITIAL_POSITION_Y;
+    };
 
-	Player.prototype.onFrame = function(delta) {
-		if (Controls.keys.down) {
-			this.pos.y += delta * SPEED;
-		}
-		if (Controls.keys.up){
-			this.pos.y -= delta * SPEED;
-    		this.isPlaying = true;
+    Player.prototype.onFrame = function(delta) {
+        if (Controls.keys.down) {
+            this.pos.y += delta * SPEED;
+        }
+        if (Controls.keys.up){
+            this.pos.y -= delta * SPEED;
+            this.isPlaying = true;
             this.game.genPipes = true;
-		}
+        }
         else if (Controls.keys.space){
             this.pos.y -= delta * SPEED;
-    		this.isPlaying = true;
+            this.isPlaying = true;
             this.game.genPipes = true;
         }
         else{
@@ -47,24 +47,24 @@ window.Player = (function() {
             }
         }
 
-		this.checkCollisionWithBounds();
+        this.checkCollisionWithBounds();
         for(var i = 0; i < this.game.pipesOnScreen.length; i++){
             this.checkCollisionWithPipes(this.game.pipesOnScreen[i]);
-            this.checkForScore(this.game.pipesOnScreen[i]);
+            this.game.score.checkForScore(this.game.pipesOnScreen[i], this.el);
         }
-        this.removePipeIfOutOfScreen();
-		// Update UI
-		this.el.css('transform', 'translate3d(' + this.pos.x + 'em, ' + this.pos.y + 'em, 0)');
-	};
+        this.game.removePipeIfOutOfScreen();
+        // Update UI
+        this.el.css('transform', 'translate3d(' + this.pos.x + 'em, ' + this.pos.y + 'em, 0)');
+    };
 
-	Player.prototype.checkCollisionWithBounds = function() {
-		if (this.pos.x < 0 ||
-			this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
-			this.pos.y < 0 ||
-			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT-6) {
-			return this.game.gameover();
-		}
-	};
+    Player.prototype.checkCollisionWithBounds = function() {
+        if (this.pos.x < 0 ||
+            this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
+            this.pos.y < 0 ||
+            this.pos.y + HEIGHT > this.game.WORLD_HEIGHT-6) {
+            return this.game.gameover();
+        }
+    };
 
     Player.prototype.checkCollisionWithPipes = function (pipe) {
         var x1 = $(this.el).offset().left;
@@ -92,30 +92,6 @@ window.Player = (function() {
         return this.game.gameover();
     };
 
-    Player.prototype.removePipeIfOutOfScreen = function () {
-        var gameOffset = $(this.game.el).offset().left - 68;
-        for(var i = 0; i < this.game.pipesOnScreen.length; i++){
-            if($(this.game.pipesOnScreen[i].pTop).offset().left - gameOffset <= 0){
-                $(this.game.pipesOnScreen[i].pTop).remove();
-                $(this.game.pipesOnScreen[i].pBot).remove();
-                this.game.pipesOnScreen.splice(i,1);
-            }
-        }
-    };
-
-    Player.prototype.checkForScore = function (pipe) {
-        var pipeOffset = $(pipe.pTop).offset().left + 68 - $(this.el).offset().left;
-        if(pipeOffset <= 0 && pipeOffset > -10){ // 10px range for laggy games still giving score
-            console.log('lastscore: ' + this.lastFrameScore);
-            if(!pipe.score){
-                this.game.score++;
-                this.game.audioController.coin();
-                $('#score').html(this.game.score);
-                pipe.score = 1;
-            }
-        }
-    };
-
-	return Player;
+    return Player;
 
 })();

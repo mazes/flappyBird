@@ -1,5 +1,6 @@
 window.Pipe = (function() {
     'use strict';
+
     var Pipe = function(game) {
         this.game = game;
         this.el = $('#pipe');
@@ -48,6 +49,6 @@ window.Pipe = (function() {
         }
     };
 
-
     return Pipe;
+
 })();
