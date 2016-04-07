@@ -24,7 +24,7 @@
 }
 
 .Scoreboard-restart {
-	margin-top: em(200px);
+	margin-top: em(100px);
 
 	font-size: inherit;
 	padding: em(4px) em(15px);
@@ -38,4 +38,16 @@
 	font-family: 'Comic Sans MS', serif;
 	font-size: em(24px);
 	color: white;
+}
+
+.Scoreboard-score {
+    font-size: 20px;
+}
+
+#currentScore {
+    font-size: 20px;
+}
+
+#highScore {
+    font-size: 20px;
 }
