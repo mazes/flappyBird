@@ -93,9 +93,9 @@ window.Player = (function() {
     };
 
     Player.prototype.removePipeIfOutOfScreen = function () {
+        var gameOffset = $(this.game.el).offset().left - 68;
         for(var i = 0; i < this.game.pipesOnScreen.length; i++){
-            if($(this.game.pipesOnScreen[i].pTop).offset().left <= 0){
-                console.log('removing');
+            if($(this.game.pipesOnScreen[i].pTop).offset().left - gameOffset <= 0){
                 $(this.game.pipesOnScreen[i].pTop).remove();
                 $(this.game.pipesOnScreen[i].pBot).remove();
                 this.game.pipesOnScreen.splice(i,1);
