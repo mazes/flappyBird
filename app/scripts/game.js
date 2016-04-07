@@ -18,6 +18,7 @@ window.Game = (function() {
         this.Pipe = new window.Pipe(this);
         this.Pipe.generatePipes();
         this.score = 0;
+        this.highScore = 0;
 
         this.muteButton = document.getElementById('mute');
         this.muteButton.onclick = this.audioController.mute;
@@ -88,6 +89,8 @@ window.Game = (function() {
         // Should be refactored into a Scoreboard class.
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
+        this.setScores();
+        console.log(this.highScore, this.score);
 		scoreboardEl
 			.addClass('is-visible')
 			.find('.Scoreboard-restart')
@@ -96,6 +99,14 @@ window.Game = (function() {
 					that.start();
 				});
 	};
+
+    Game.prototype.setScores = function() {
+        $('#currentScore').html(this.score);
+        if( this.score > this.highScore){
+            this.highScore = this.score;
+        }
+        $('#highScore').html(this.highScore);
+    };
 	/**
 	 * Some shared constants.
 	 */
