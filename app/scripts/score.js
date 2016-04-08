@@ -28,7 +28,7 @@ window.Score = (function() {
     };
 
     Score.prototype.checkForScore = function(pipe, playerEl) {
-        var pipeOffset = $(pipe.pTop).offset().left + 68 - $(playerEl).offset().left;
+        var pipeOffset = $(pipe.pTop).offset().left + 68 - $(playerEl).offset().left; //68 width of the pipe
         if(pipeOffset <= 0 && pipeOffset > -10){ // 10px range for laggy games still giving score
             if(!pipe.score){
                 this.score++;

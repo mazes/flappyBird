@@ -79,11 +79,11 @@ window.Player = (function() {
         var w2 = $(pipe.pTop).outerWidth(true);
         var b2 = y2 + h2;
         var r2 = x2 + w2;
-        
-        var x3 = $(pipe.pBot).offset().left;
+
+        var x3 = x2;
         var y3 = $(pipe.pBot).offset().top;
         var h3 = $(pipe.pBot).outerHeight(true);
-        var w3 = $(pipe.pBot).outerWidth(true);
+        var w3 = w2;
         var b3 = y3 + h3;
         var r3 = x3 + w3;
 
