@@ -38,12 +38,13 @@
 	border: em(2px) solid white;
 	background: none;
 	cursor: pointer;
+	box-shadow: 2px 3px 4px rgba(0,0,0,0.5);
 }
 
 .Scoreboard-restartText {
-    // NOTICE: You'll lose 10% of your score if you don't change this style!
     font-family: 'Comic Sans MS', serif;
-    font-size: em(24px);
+		font-style: italic;
+    font-size: em(28px);
     color: white;
 }
 
