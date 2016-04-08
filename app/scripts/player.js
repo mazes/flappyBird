@@ -72,12 +72,14 @@ window.Player = (function() {
         var w1 = $(this.el).outerWidth(false);
         var b1 = y1 + h1;
         var r1 = x1 + w1;
+
         var x2 = $(pipe.pTop).offset().left;
         var y2 = $(pipe.pTop).offset().top;
         var h2 = $(pipe.pTop).outerHeight(true);
         var w2 = $(pipe.pTop).outerWidth(true);
         var b2 = y2 + h2;
         var r2 = x2 + w2;
+        
         var x3 = $(pipe.pBot).offset().left;
         var y3 = $(pipe.pBot).offset().top;
         var h3 = $(pipe.pBot).outerHeight(true);
@@ -85,6 +87,7 @@ window.Player = (function() {
         var b3 = y3 + h3;
         var r3 = x3 + w3;
 
+        //check if any pipe edge is colliding with the player
         if ((b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) && (b1 < y3 || y3 > b3 || r1 < x3 || x1 > r3)) {
             return false;
         }
