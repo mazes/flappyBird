@@ -16,7 +16,6 @@ window.Player = (function() {
         this.el = el;
         this.game = game;
         this.pos = { x: 0, y: 0 };
-        this.lastFrameScore = false;
     };
 
     /**

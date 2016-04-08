@@ -41,7 +41,6 @@ window.Score = (function() {
 
     Score.prototype.resetGame = function() {
         this.el.removeClass('is-visible');
-        this.game.cleanUpPipes();
         this.game.start();
     };
 

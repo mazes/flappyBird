@@ -7,18 +7,20 @@ window.Pipe = (function() {
         this.el = $('#pipe');
         this.currentPipes = [];
         this.index = 0;
-        this.maxPipes = 50;
+        this.maxPipes = 5;
     };
 
     Pipe.prototype.spawnPipe = function() {
-        if(this.index === this.maxPipes){
-            this.index = 0;
-        }
-
         var pipe = this.currentPipes[this.index];
         this.el.append(pipe.pTop);
         this.el.append(pipe.pBot);
         this.index++;
+        if(this.index === this.maxPipes){
+            this.index = 0;
+            this.currentPipes = [];
+            this.generatePipes();
+        }
+
         return pipe;
     };
 

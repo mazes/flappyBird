@@ -17,7 +17,7 @@ window.Game = (function() {
         this.pipesOnScreen = [];
         this.Pipe = new window.Pipe(this);
         this.Pipe.generatePipes();
-
+        this.PIPESPAWNTIME = 90;
         this.muteButton = document.getElementById('mute');
         this.muteButton.onclick = this.audioController.mute;
 
@@ -44,7 +44,7 @@ window.Game = (function() {
 
         if(this.genPipes){
             this.counter++;
-            if(this.counter === 120){
+            if(this.counter === this.PIPESPAWNTIME){
                 this.pipesOnScreen.push(this.Pipe.spawnPipe());
                 this.counter = 0;
             }
@@ -72,7 +72,7 @@ window.Game = (function() {
         this.score.score = 0;
         this.counter = 0;
         this.genPipes = false;
-        this.pipesOnScreen = [];
+        this.cleanUpPipes();
         $('#score').html(this.score.score);
         this.player.reset();
     };
@@ -92,12 +92,10 @@ window.Game = (function() {
 
     Game.prototype.stopAnimation = function() {
         this.el.find('*').addClass('stopAnimation');
-        console.log('animation stopeed!');
     };
 
     Game.prototype.startAnimation = function() {
         this.el.find('*').removeClass('stopAnimation');
-        console.log('animation started');
     };
 
     Game.prototype.cleanUpPipes = function() {
@@ -105,6 +103,8 @@ window.Game = (function() {
             $(this.pipesOnScreen[i].pTop).remove();
             $(this.pipesOnScreen[i].pBot).remove();
         }
+
+        this.pipesOnScreen = [];
     };
 
     Game.prototype.removePipeIfOutOfScreen = function() {
