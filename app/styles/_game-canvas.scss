@@ -53,8 +53,27 @@
     overflow: hidden;
 
     // Some graphics
-    background-image: url('/images/bg.png');
-    background-size: em(1024px) em(576px);
+
+
+
+}
+
+.background-pic {
+  position: absolute;
+  top: 0;
+  width: inherit;
+  height: inherit;
+  background-image: url('/images/bg.png');
+  background-repeat: repeat-x;
+  background-clip: border-box;
+  background-size: em(1024px) em(576px);
+
+  animation: moveBackground 120s infinite linear;
+}
+
+@keyframes moveBackground {
+  from{ background-position: 0px 0px;}
+  to { background-position: -2048px 0px;}
 }
 
 .groundContainer{
