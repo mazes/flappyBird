@@ -53,10 +53,8 @@
     overflow: hidden;
 
     // Some graphics
-
-    @include linearGradient(#87CEEB,#FFFFFF);
-
-
+    background-image: url('/images/bg.png');
+    background-size: em(1024px) em(576px);
 }
 
 .groundContainer{
@@ -93,8 +91,6 @@
 
 }
 
-
-
 .groundBottom{
     background-color: rgb(41, 32, 2);
     height: 35px;
@@ -104,17 +100,12 @@
 @keyframes movingGround {
     0%{
         transform: translate3d(0, 0, 0);
-
     }
     100%{
         transform: translate3d(-75px, 0, 0);
-
     }
 
 }
-
-
-// CLOUD
 
 .cloud {
     width: 200px; height: 60px;
